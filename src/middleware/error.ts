@@ -33,7 +33,7 @@ const errorHandler = (err: any, req: Request, res: Response, next: NextFunction)
     console.error(err);
   }
 
-  res.status(statusCode).send(response);
+  return res.status(statusCode).send(response);
 };
 
 export = {

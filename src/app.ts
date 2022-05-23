@@ -27,11 +27,8 @@ app.set('view engine', 'ejs');
 
 
 // send back a 404 error for any unknown api request
-app.use((error: any, req: Request, res: Response, next: NextFunction) => {
-  if (res.headersSent) {
-    return next(new ApiError(httpStatus.NOT_FOUND, 'Not found'));;
-  }
-  res.status(httpStatus.INTERNAL_SERVER_ERROR).send(error.message);
+app.use((req, res, next) => {
+  next(new ApiError(httpStatus.NOT_FOUND, 'Not found'));
 });
   
   // convert error to ApiError, if needed
