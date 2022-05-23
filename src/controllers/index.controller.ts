@@ -3,9 +3,9 @@ import { Request, Response } from "express";
 import { updateAccountData } from "../services";
 import httpStatus from 'http-status';
 
-const home = catchAsync(async (req: Request, res: Response) => {
-  res.render("index");
-});
+const home = async (req: Request, res: Response) => {
+  return res.render("index");
+};
 
 const updateAccount = catchAsync(async (req: Request, res: Response) => {
   await updateAccountData(req.body);
