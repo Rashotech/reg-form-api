@@ -4,12 +4,13 @@
   "description": "Registration Form API",
   "main": "server.js",
   "scripts": {
-    "start": "ts-node ./src/server.ts",
+    "start": "node dist/server.js",
     "dev": "ts-node-dev --respawn --transpile-only ./src/server.ts",
-    "build": "tsc --project ./",
     "test": "jest",
-    "postinstall": "tsc",
-    "deploy": "git add . && git commit -m Heroku && git push heroku master"
+    "postinstall": "yarn build",
+    "clean": "rimraf dist/",
+    "copy-files": "copyfiles -u 1 -e \"src/**/*.ts\" \"src/**/*.*\" dist/",
+    "build": "yarn clean && tsc && yarn copy-files"
   },
   "keywords": [],
   "author": "Rasheed Ayoade",
@@ -22,7 +23,9 @@
     "@types/nodemailer": "^6.4.4",
     "@types/nodemailer-mailgun-transport": "^1.4.3",
     "@types/supertest": "^2.0.12",
+    "copyfiles": "^2.4.1",
     "jest": "^28.1.0",
+    "rimraf": "^3.0.2",
     "supertest": "^6.2.3",
     "ts-jest": "^28.0.2",
     "ts-node": "^10.8.0",
